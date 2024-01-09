@@ -113,4 +113,8 @@ public class Mapper {
         System.out.println("Hello World");
     }
 
+    public static Float getPI(){
+        return 3.14F;
+    }
+
 }
