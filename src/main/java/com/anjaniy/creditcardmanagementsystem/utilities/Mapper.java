@@ -124,4 +124,8 @@ public class Mapper {
     public void greet(String name) {
         System.out.println("Good morning " + name);
     }
+
+    public void temp(){
+        System.out.println("Nice");
+    }
 }
