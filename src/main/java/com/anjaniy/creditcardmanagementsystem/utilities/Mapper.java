@@ -121,4 +121,7 @@ public class Mapper {
         return number * number;
     }
 
+    public void greet(String name) {
+        System.out.println("Good morning " + name);
+    }
 }
