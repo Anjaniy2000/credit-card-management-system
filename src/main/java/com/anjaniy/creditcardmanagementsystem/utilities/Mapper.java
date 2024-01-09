@@ -109,4 +109,8 @@ public class Mapper {
         return creditCard;
     }
 
+    public void greet(){
+        System.out.println("Hello World");
+    }
+
 }
