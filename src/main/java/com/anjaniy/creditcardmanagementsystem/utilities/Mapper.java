@@ -125,7 +125,11 @@ public class Mapper {
         System.out.println("Good morning " + name);
     }
 
-    public void temp(){
+    public void temp() {
         System.out.println("Nice");
+    }
+
+    public void temp(String name) {
+        System.out.println(name);
     }
 }
