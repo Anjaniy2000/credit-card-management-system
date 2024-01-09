@@ -117,4 +117,8 @@ public class Mapper {
         return 3.14F;
     }
 
+    public Integer square(int number){
+        return number * number;
+    }
+
 }
