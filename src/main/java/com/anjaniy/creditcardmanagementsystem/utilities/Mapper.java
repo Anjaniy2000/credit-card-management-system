@@ -132,4 +132,8 @@ public class Mapper {
     public void temp(String name) {
         System.out.println(name);
     }
+
+    public void xx(){
+        
+    }
 }
