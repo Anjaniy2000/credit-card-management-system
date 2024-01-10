@@ -109,13 +109,13 @@ public class Mapper {
         return creditCard;
     }
 
-//    public void greet(){
-//        System.out.println("Hello World");
-//    }
-//
-//    public static Float getPI(){
-//        return 3.14F;
-//    }
+    public void greet(){
+        System.out.println("Hello World");
+    }
+
+    public static Float getPI(){
+        return 3.14F;
+    }
 
     public Integer square(int number){
         return number * number;
@@ -128,8 +128,5 @@ public class Mapper {
     public void temp() {
         System.out.println("Nice");
     }
-
-    public void temp(String name) {
-        System.out.println(name);
-    }
+    
 }
