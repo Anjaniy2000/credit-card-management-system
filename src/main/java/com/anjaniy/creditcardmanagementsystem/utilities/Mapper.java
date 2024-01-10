@@ -128,5 +128,9 @@ public class Mapper {
     public void temp() {
         System.out.println("Nice");
     }
+
+    public void sayHello() {
+        System.out.println("Hello");
+    }
     
 }
