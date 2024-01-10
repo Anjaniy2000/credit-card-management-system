@@ -132,5 +132,8 @@ public class Mapper {
     public void sayHello() {
         System.out.println("Hello");
     }
-    
+
+    public void xx(){
+
+    }
 }
