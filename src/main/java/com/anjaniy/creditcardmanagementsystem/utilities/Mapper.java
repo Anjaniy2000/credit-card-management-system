@@ -117,5 +117,9 @@ public class Mapper {
 
     }
 
+    public void getName() {
+        System.out.println("Anjaniy");
+    }
+
 
 }
