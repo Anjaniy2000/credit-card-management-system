@@ -107,7 +107,7 @@ public class Mapper {
             }
         }
         return creditCard;
-    }g
+    }
 
     public void lastFunction() {
 
