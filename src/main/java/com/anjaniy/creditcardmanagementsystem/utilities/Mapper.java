@@ -109,4 +109,13 @@ public class Mapper {
         return creditCard;
     }
 
+    public void secondLastFunction(){
+
+    }
+
+    public void lastFunction(){
+
+    }
+
+
 }
