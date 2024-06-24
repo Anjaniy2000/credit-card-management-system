@@ -2,8 +2,10 @@ package com.anjaniy.creditcardmanagementsystem.models.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @MappedSuperclass
-public class AbstractEntity <T> {
+public class AbstractEntity <T extends Serializable> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

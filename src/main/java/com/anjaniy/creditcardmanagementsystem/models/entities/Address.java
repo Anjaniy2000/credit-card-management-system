@@ -23,7 +23,7 @@ public class Address extends AbstractEntity<UUID> {
     @Column(name = "zip")
     private Integer zip;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id_fk", referencedColumnName = "id")
     private User user;
 

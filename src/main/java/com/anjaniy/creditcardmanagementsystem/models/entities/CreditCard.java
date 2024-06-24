@@ -2,6 +2,10 @@ package com.anjaniy.creditcardmanagementsystem.models.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionManager;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.sql.Date;
 import java.util.UUID;
 
@@ -18,7 +22,7 @@ public class CreditCard extends AbstractEntity<UUID> {
     @Column(name = "credit_limit")
     private Double creditLimit;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id_fk", referencedColumnName = "id")
     private User user;
 

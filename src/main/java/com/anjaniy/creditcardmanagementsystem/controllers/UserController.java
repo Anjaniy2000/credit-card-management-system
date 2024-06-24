@@ -5,6 +5,7 @@ import com.anjaniy.creditcardmanagementsystem.models.dto.UserDto;
 import com.anjaniy.creditcardmanagementsystem.models.dto.request.GetUsersRequest;
 import com.anjaniy.creditcardmanagementsystem.models.dto.response.GetUsersResponse;
 import com.anjaniy.creditcardmanagementsystem.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody CreateUserRequest request) {
+    public ResponseEntity<UserDto> createUser(@RequestBody @Valid CreateUserRequest request) {
         return new ResponseEntity<>(userService.createUser(request), HttpStatus.CREATED);
     }
 

@@ -1,9 +1,7 @@
 package com.anjaniy.creditcardmanagementsystem.models.dto.request;
 
 public class GetUsersRequest {
-
     private int startPage;
-
     private int pageSize;
 
     public GetUsersRequest() {

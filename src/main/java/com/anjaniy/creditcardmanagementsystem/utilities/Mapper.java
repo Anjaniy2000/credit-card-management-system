@@ -19,7 +19,7 @@ public class Mapper {
     private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public static UserDto convert(User user) {
-        UserDto userDto = new UserDto(user.getName(), user.getEmail(), user.getPhoneNumber(), user.getGender(), Mapper.convert(user.getAddress()), user.getCreditCards().stream().map(Mapper::convert).collect(Collectors.toList()));
+        UserDto userDto = new UserDto(user.getName(), user.getEmail(), user.getPhoneNumber(), user.getGender(), Mapper.convert(user.getAddress()), user.getCreditCards().stream().map(Mapper::convert).toList());
         if(user.getId() != null){
             userDto.setId(user.getId().toString());
         }
@@ -107,18 +107,6 @@ public class Mapper {
             }
         }
         return creditCard;
-    }
-
-    public void lastFunction() {
-
-    }
-
-    public void lastLastFunction() {
-
-    }
-
-    public void getName() {
-        System.out.println("Anjaniy");
     }
 
 

@@ -22,6 +22,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.ArrayList;
 import java.util.List;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -160,6 +162,7 @@ public class CreditCardManagementSystemIntegrationTests extends CreditCardManage
     }
 
     @Test
+    @Transactional
     void test_updateUser(){
         CreateUserRequest createUserRequest = new CreateUserRequest(NAME, EMAIL, PHONE_NUMBER, GENDER, address, creditCards);
         try {
@@ -190,6 +193,7 @@ public class CreditCardManagementSystemIntegrationTests extends CreditCardManage
     }
 
     @Test
+    @Transactional
     void test_updateUserWithAddressAndCreditCards(){
         CreateUserRequest createUserRequest = new CreateUserRequest(NAME, EMAIL, PHONE_NUMBER, GENDER, address, creditCards);
         try {
