@@ -10,17 +10,21 @@ pipeline {
         POSTGRES_PASSWORD = 'root'
     }
 
+    tools {
+        maven 'maven'
+    }
+
     stages {
-        stage('Checkout') {
+
+        stage('Build Project') {
             steps {
-                // Checkout the code from your repository
-                git 'https://github.com/Anjaniy2000/credit-card-management-system.git'
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Anjaniy2000/credit-card-management-system']])
+                bat "mvn clean install"
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                // Build the Docker image for the Spring Boot application
                 script {
                     docker.build("${DOCKER_IMAGE}")
                 }
@@ -29,21 +33,18 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                // Push the Docker image to the Docker registry
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-credentials-id') {
-                        docker.image("${DOCKER_IMAGE}").push()
-                    }
+                    bat "docker login -u nerdx01salekar@gmail.com -p Anjaniy@12345"
+                    bat "docker push ${DOCKER_IMAGE}"
                 }
             }
         }
 
         stage('Deploy with Docker Compose') {
             steps {
-                // Create a docker-compose.yml file
                 script {
                     writeFile file: 'docker-compose.yml', text: """
-                    version: '3.1'
+                    version: '3'
                     services:
                       app:
                         image: ${DOCKER_IMAGE}
@@ -51,10 +52,12 @@ pipeline {
                           - "8081:8080"
                         depends_on:
                           - postgres
+                        restart: on-failure
                         environment:
-                          SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${POSTGRES_DB}
+                          SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
                           SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
                           SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+                          SPRING_JPA_HIBERNATE_DDL_AUTO: update
 
                       postgres:
                         image: postgres:latest
@@ -63,23 +66,20 @@ pipeline {
                           POSTGRES_USER: ${POSTGRES_USER}
                           POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
                         volumes:
-                          - pgdata:/var/lib/postgresql/data
+                          - ./data:/var/lib/postgresql/data
                     """
                 }
 
-                // Deploy the application using Docker Compose
-                sh 'docker-compose up -d'
+                bat 'docker-compose up -d'
             }
         }
     }
 
     post {
         success {
-            // Actions to perform on successful deployment
             echo 'Deployment successful!'
         }
         failure {
-            // Actions to perform if deployment fails
             echo 'Deployment failed!'
         }
     }
